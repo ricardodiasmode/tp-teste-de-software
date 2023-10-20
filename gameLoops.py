@@ -22,11 +22,11 @@ def run_game_loop(in_game_mode):
     for i in range(len(in_game_mode.blue_characters)):
         if not in_game_mode.blue_characters[i].is_dead:
             in_game_mode.blue_characters[i].brain.Think(in_game_mode.blue_characters[i], in_game_mode)
-            in_game_mode.blue_characters[i].React()
+            in_game_mode.blue_characters[i].react()
             current_alive_characters += 1
     for i in range(len(in_game_mode.red_characters)):
         if not in_game_mode.red_characters[i].is_dead:
             in_game_mode.red_characters[i].brain.Think(in_game_mode.red_characters[i], in_game_mode)
-            in_game_mode.red_characters[i].React()
+            in_game_mode.red_characters[i].react()
             current_alive_characters += 1
     print("Turn: " + str(in_game_mode.current_turn) + " | Alive characters: " + current_alive_characters.__str__())

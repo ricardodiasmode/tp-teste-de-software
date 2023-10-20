@@ -20,6 +20,11 @@ class Character:
     blue_team_member = False
     energy = 10
 
+    blue_character_with_knife_img = pygame.image.load("img/BlueCharacterWithKnife.png")
+    red_character_with_knife_img = pygame.image.load("img/RedCharacterWithKnife.png")
+    blue_character_img = pygame.image.load("img/BlueCharacter.png")
+    red_character_img = pygame.image.load("img/RedCharacter.png")
+
     def __init__(self, location, game_mode, blue_team):
         self.current_location = location
         self.game_mode = game_mode
@@ -32,6 +37,8 @@ class Character:
             self.dna.append((random.randint(0, 20000) / 10.0) - 1000.0)
 
     def update_image(self):
+        if self.game_mode is None:
+            return
         if self.game_mode.current_background is None:
             return
 
@@ -42,27 +49,27 @@ class Character:
 
         if self.has_knife:
             if self.blue_team_member:
-                self.player_image = pygame.image.load("img/BlueCharacterWithKnife.png")
+                self.player_image = self.blue_character_with_knife_img
             else:
-                self.player_image = pygame.image.load("img/RedCharacterWithKnife.png")
+                self.player_image = self.red_character_with_knife_img
         else:
             if self.blue_team_member:
-                self.player_image = pygame.image.load("img/BlueCharacter.png")
+                self.player_image = self.blue_character_img
             else:
-                self.player_image = pygame.image.load("img/RedCharacter.png")
+                self.player_image = self.red_character_img
 
         # Updating location
         image_below = self.game_mode.current_background.square_image_dict[self.current_location]
         self.game_mode.current_background.screen.blit(image_below, self.current_location)
         self.game_mode.current_background.screen.blit(self.player_image, self.current_location)
 
-    def React(self):
+    def react(self):
         output_len = len(self.brain.last_calculated_output)
         for i in range(output_len):
             if self.brain.last_calculated_output[i] > 0:
-                self.get_action(i)
+                self.do_action(i)
                 return
-        self.get_action(-1)
+        self.do_action(-1)
 
     def move_left(self):
         self.move((-64, 0))
@@ -119,7 +126,7 @@ class Character:
         if self.energy == 0:
             self.die()
 
-    def get_action(self, action_index):
+    def do_action(self, action_index):
         self.energy -= 1
         if action_index == 0:
             self.move_left()
