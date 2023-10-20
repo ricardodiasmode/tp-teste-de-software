@@ -32,6 +32,9 @@ class Character:
             self.dna.append((random.randint(0, 20000) / 10.0) - 1000.0)
 
     def update_image(self):
+        if self.game_mode.current_background is None:
+            return
+
         if self.is_dead:
             image_below = self.game_mode.current_background.square_image_dict[self.current_location]
             self.game_mode.current_background.screen.blit(image_below, self.current_location)
@@ -74,6 +77,9 @@ class Character:
         self.move((0, 64))
 
     def move(self, position):
+        if self.game_mode.current_background is None:
+            return
+
         location_to_go = (self.current_location[0] + position[0], self.current_location[1] + position[1])
         if utils.distance_between_locations(utils.get_closest_log_dist(location_to_go, self.game_mode.current_background), location_to_go) > \
             utils.distance_between_locations(utils.get_closest_log_dist(self.current_location, self.game_mode.current_background),
@@ -131,6 +137,9 @@ class Character:
         self.check_should_die()
 
     def craft_knife(self):
+        if self.game_mode.current_background is None:
+            return
+
         if self.game_mode.current_background.square_dict[self.current_location] != "LOG" or \
                 self.has_knife:
             self.rewards -= 2
