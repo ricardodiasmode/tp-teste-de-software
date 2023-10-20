@@ -1,22 +1,7 @@
 import time
 import pygame
 import gamemode
-
-
-def run_event_loop(time_to_sleep, draw_info):
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            game_mode.game_is_running = False
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_s:
-                draw_info = not draw_info
-            elif event.key == pygame.K_DOWN:
-                time_to_sleep += 0.01
-            elif event.key == pygame.K_UP:
-                time_to_sleep -= 0.01
-                if time_to_sleep < 0:
-                    time_to_sleep = 0
-    return draw_info, time_to_sleep
+from gameLoops import run_event_loop
 
 
 def run_game_loop():
@@ -43,7 +28,7 @@ should_draw_info = False
 sleep_time = 0.0
 
 while game_mode.game_is_running:
-    should_draw_info, sleep_time = run_event_loop(sleep_time, should_draw_info)
+    should_draw_info, sleep_time = run_event_loop(sleep_time, should_draw_info, pygame.event.get(), game_mode)
     run_game_loop()
 
     if should_draw_info:
