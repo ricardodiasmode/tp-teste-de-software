@@ -106,9 +106,10 @@ class GameMode:
 
     def clone_best_characters(self):
         for i in range(len(self.blue_characters)):
-            if i < len(self.best_characters_in_turn):
-                self.blue_characters[i].dna = self.best_characters_in_turn[i].dna
-                self.red_characters[i].dna = self.best_characters_in_turn[i].dna
+            if i >= len(self.best_characters_in_turn):
+                break
+            self.blue_characters[i].dna = self.best_characters_in_turn[i].dna
+            self.red_characters[i].dna = self.best_characters_in_turn[i].dna
 
     def mutate_characters(self):
         for i in range(len(self.best_characters_in_turn), len(self.blue_characters)):
