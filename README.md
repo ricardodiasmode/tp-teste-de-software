@@ -1,5 +1,5 @@
 ## tp-es2
-This is a simples ML project using Reinforcement Learning with Neural Network to train some Software Engineering concepts. 
+This is a simples ML project using Reinforcement Learning with Neural Network to train some Software Engineering and Software Tests concepts. 
 
 # 1.
 Ricardo Dias Avelar - 2019054960
