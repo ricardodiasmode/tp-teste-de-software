@@ -3,7 +3,6 @@ import pygame
 import gamemode
 from gameLoops import run_event_loop, run_game_loop
 
-# Basic game setups
 pygame.init()
 clock = pygame.time.Clock()
 game_mode = gamemode.GameMode()
