@@ -17,7 +17,7 @@ while game_mode.game_is_running:
     run_game_loop(game_mode)
 
     if should_draw_info:
-        game_mode.draw_info()  # This slow down the game a lot
+        game_mode.draw_info()
 
     time.sleep(sleep_time)
 
