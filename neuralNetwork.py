@@ -25,9 +25,9 @@ def get_entry_params(character, gamemode):
 
 
 class NeuralNetwork:
-    entry_layer = []
+    entry_layer = None
     hidden_layer = []
-    out_layer = []
+    out_layer = None
 
     last_calculated_output = []
 
