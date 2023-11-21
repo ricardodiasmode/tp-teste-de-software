@@ -40,3 +40,14 @@ class TestBackground:
         self.mocked_background.reset_variables()
         self.mocked_background.update_square((0, 0), "LOG")
         assert self.mocked_background.square_image_dict[0, 0] == self.mocked_background.log_img
+
+    def test_load_grass(self):
+        self.mocked_background.load_grass_images()
+        assert self.mocked_background.grass0_img is not None and \
+            self.mocked_background.grass1_img is not None and \
+            self.mocked_background.grass2_img is not None and \
+            self.mocked_background.grass3_img is not None
+
+    def test_load_log(self):
+        self.mocked_background.load_log_image()
+        assert self.mocked_background.log_img is not None

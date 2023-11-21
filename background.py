@@ -14,15 +14,26 @@ class Background:
     square_dict = {}
     log_locations = []
 
-    grass0_img = pygame.image.load('img/Grass0.png')
-    grass1_img = pygame.image.load('img/Grass1.png')
-    grass2_img = pygame.image.load('img/Grass2.png')
-    grass3_img = pygame.image.load('img/Grass3.png')
-    log_img = pygame.image.load('img/Log.png')
+    grass0_img = None
+    grass1_img = None
+    grass2_img = None
+    grass3_img = None
+    log_img = None
 
     def __init__(self):
+        self.load_grass_images()
+        self.load_log_image()
         self.screen = pygame.display.set_mode((self.display_width + self.debug_width, self.display_height))
         self.reset_background()
+
+    def load_grass_images(self):
+        self.grass0_img = pygame.image.load('img/Grass0.png')
+        self.grass1_img = pygame.image.load('img/Grass1.png')
+        self.grass2_img = pygame.image.load('img/Grass2.png')
+        self.grass3_img = pygame.image.load('img/Grass3.png')
+
+    def load_log_image(self):
+        self.log_img = pygame.image.load('img/Log.png')
 
     def reset_background(self):
         self.reset_variables()
